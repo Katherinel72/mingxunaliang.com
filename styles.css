@@ -236,17 +236,6 @@ p {
 }
 
 /* KEEP THIS - For horizontal banner images */
-.project-image {
-    height: 400px; /* Increased from 220px */
-    overflow: hidden;
-    background: var(--background-light);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-bottom: 0.5px solid var(--border);
-    position: relative;
-}
-
 .project-image img {
     width: 100%;
     height: 100%;
@@ -318,26 +307,35 @@ p {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
 
-/* ADD THIS: Two horizontal images equally placed in a row */
-.project-images-two-horizontal {
+/* Clean horizontal images without containers */
+.project-images-horizontal {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-columns: 1fr 1fr;
     gap: 2rem;
     margin: 3rem 0;
     align-items: start;
-    width: 100%;
 }
 
-.project-images-two-horizontal .project-image {
-    height: 400px; /* Consistent height for both images */
-    margin: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--background-light);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    overflow: hidden;
+.project-images-horizontal img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.project-images-horizontal img:hover {
+    transform: translateY(-2px);
+}
+
+/* Single horizontal image */
+.project-image-single {
+    margin: 3rem 0;
+}
+
+.project-image-single img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
 }
 
 .project-images-two-horizontal .project-image img {
