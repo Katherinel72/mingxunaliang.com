@@ -3,328 +3,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAN Studio - UX Case Study</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>LAN Studio Market Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #fafafa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .market-analysis {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            color: #2c5530;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .problem-side, .solution-side {
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .problem-side {
+            background: linear-gradient(135deg, #fff5f5, #fed7d7);
+            border: 2px solid #fc8181;
+        }
+
+        .solution-side {
+            background: linear-gradient(135deg, #f0fff4, #c6f6d5);
+            border: 2px solid #48bb78;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid;
+        }
+
+        .problem-side .section-title {
+            color: #c53030;
+            border-bottom-color: #fc8181;
+        }
+
+        .solution-side .section-title {
+            color: #276749;
+            border-bottom-color: #48bb78;
+        }
+
+        .competitor-category {
+            margin-bottom: 2rem;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .competitor-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .competitor-item {
+            padding: 1rem;
+            border-radius: 6px;
+            background: rgba(255,255,255,0.7);
+            border-left: 4px solid;
+        }
+
+        .problem-side .competitor-item {
+            border-left-color: #fc8181;
+        }
+
+        .solution-side .competitor-item {
+            border-left-color: #48bb78;
+        }
+
+        .competitor-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .competitor-problems, .solution-features {
+            list-style: none;
+            font-size: 0.9rem;
+        }
+
+        .competitor-problems li, .solution-features li {
+            margin-bottom: 0.3rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .competitor-problems li:before {
+            content: "×";
+            color: #e53e3e;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .solution-features li:before {
+            content: "✓";
+            color: #38a169;
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .lan-studio-highlight {
+            background: linear-gradient(135deg, #e6fffa, #b2f5ea);
+            border: 2px solid #38b2ac;
+            padding: 2rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+        }
+
+        .lan-studio-highlight .section-title {
+            color: #234e52;
+            border-bottom-color: #38b2ac;
+        }
+
+        .value-props {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .value-prop {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .value-prop-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-prop-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #234e52;
+        }
+
+        .visual-summary {
+            background: #f7fafc;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .summary-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #2d3748;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .summary-item {
+            padding: 1rem;
+            background: white;
+            border-radius: 6px;
+            border-left: 4px solid #4299e1;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .market-analysis {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="index.html">ML</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="work.html">Work</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-                <li><a href="assets/Mingxuan Liang UX Resume.pdf" target="_blank">Resume</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <section class="case-study-hero">
-        <div class="hero-content">
-            <h1>LAN Studio — Curating Serenity in E-commerce</h1>
-            <p>Translating Wabi-Sabi Philosophy into a Streamlined Digital Experience</p>
-            <div style="margin-top: 2rem;">
-                <span class="project-tag">UX/UI Design</span>
-                <span class="project-tag">E-commerce Strategy</span>
-                <span class="project-tag">Brand Identity</span>
-                <span class="project-tag">Entrepreneurship</span>
-            </div>
-        </div>
-    </section>
-
-    <section class="case-study-content">
-        <div class="content-section">
-            <h2>Project Overview</h2>
-            <div class="project-meta-grid">
-                <div>
-                    <strong>My Role</strong>
-                    <p>Founder & Lead UX Strategist</p>
-                </div>
-                <div>
-                    <strong>Timeline</strong>
-                    <p>6 Months</p>
-                </div>
-                <div>
-                    <strong>Tools</strong>
-                    <p>Shopify, Figma, Google Analytics</p>
-                </div>
-                <div>
-                    <strong>Impact</strong>
-                    <p>13% mobile engagement increase</p>
-                </div>
-            </div>
-            
-            <div style="background: var(--background-light); padding: 2.5rem; border: 0.5px solid var(--border); margin: 2rem 0;">
-                <p style="font-size: 1.25rem; line-height: 1.7; margin: 0; font-style: italic; color: var(--text-dark);">
-                    "The online home decor market is saturated with perfection. LAN Studio emerged to celebrate imperfection—creating a digital space where users don't just shop, but discover pieces with soul, story, and the quiet beauty of wabi-sabi."
-                </p>
-            </div>
+    <div class="market-analysis">
+        <div class="header">
+            <h1>Home Decor E-commerce: Problem vs Solution</h1>
+            <p class="subtitle">How LAN Studio addresses the gaps in a polarized market</p>
         </div>
 
-        <!-- The Beginning -->
-        <div class="content-section">
-            <h2>The Beginning: Identifying the User & Market Gap</h2>
-            <p>LAN Studio was born from a personal need for home decor that balanced <strong>accessibility and artistry</strong>. The market audit revealed a clear gap: consumers were forced to choose between cheap, impersonal, mass-produced items and luxury pieces with prohibitive prices.</p>
-            
-            <p>This wasn't just a business opportunity; it was a <strong>user experience problem</strong>. The target audience—aesthetically discerning individuals who value authenticity and emotional warmth—had no online destination that made them feel understood. They struggled to find pieces that told a story and made their space truly feel like their own. This foundational insight was the catalyst for <strong>orchestrating the entire product strategy</strong>.</p>
-            
-            <!-- IMAGE PLACEHOLDER: Market gap visualization or mood board -->
-            <div class="project-image">
-                <div style="background: #f5f5f5; height: 400px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                    <p style="color: #666;">[Image: Market gap analysis showing polarized options between mass-produced and luxury decor]</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Research & Synthesis -->
-        <div class="content-section">
-            <h2>Research & Synthesis: Defining the Wabi-Sabi User</h2>
-            
-            <h3>Competitive Audit Insights</h3>
-            <p>A comprehensive analysis of competitors showed they competed on either price or prestige, but rarely on <strong>emotional connection</strong> or <strong>artistic integrity</strong>. We plotted them on a matrix to visualize why our target user had no satisfying destination—they were forced to choose between authenticity and accessibility.</p>
-            
-            <!-- IMAGE PLACEHOLDER: Competitive matrix -->
-            <div class="project-image">
-                <div style="background: #f5f5f5; height: 400px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                    <p style="color: #666;">[Image: Competitive matrix showing LAN Studio's position in the white space between authenticity and accessibility]</p>
-                </div>
-            </div>
-            
-            <p>By identifying this white space, we gained a <strong>validated strategic mandate</strong> to architect an experience that was both emotionally resonant (through storytelling and curation) and intuitively accessible (through streamlined navigation and mid-tier pricing).</p>
-            
-            <h3>User Pain Points</h3>
-            <div class="persona-grid">
-                <div class="persona-card">
-                    <h4>The Authenticity Seeker</h4>
-                    <p><em>"I want my home to tell a story, not just follow trends."</em></p>
-                    <ul>
-                        <li>Frustrated by mass-produced items lacking craftsmanship</li>
-                        <li>Seeks emotional connection with their possessions</li>
-                        <li>Values sustainability and artisanal quality</li>
-                    </ul>
-                </div>
-                <div class="persona-card">
-                    <h4>The Mindful Curator</h4>
-                    <p><em>"My home is my sanctuary—every piece should bring calm."</em></p>
-                    <ul>
-                        <li>Overwhelmed by cluttered, fast-paced shopping experiences</li>
-                        <li>Prioritizes intentionality over impulse buying</li>
-                        <li>Seeks brands aligned with personal values</li>
-                    </ul>
-                </div>
-            </div>
-            
-            <h3>The UX Insight</h3>
-            <div style="background: var(--background-light); padding: 2rem; border: 0.5px solid var(--border);">
-                <p style="font-style: italic; margin: 0;">
-                    Our user wasn't just buying a product; they were investing in self-care, creativity, and a sense of calm. The brand positioning of 'affordable yet exceptional-quality pieces' was a direct UX requirement to solve these pain points. Our mission was to build trust where it was lacking.
-                </p>
-            </div>
-        </div>
-
-        <!-- Architecting the Experience -->
-        <div class="content-section">
-            <h2>Architecting the Experience: The Wabi-Sabi User Flow</h2>
-            
-            <h3>The Problem</h3>
-            <p>A traditional, overwhelming "Shop All" approach would contradict the brand's serene, curated philosophy and create decision fatigue for users seeking intentional purchases.</p>
-            
-            <h3>The Solution: A Curated, Intentional IA</h3>
-            <p>To combat decision fatigue, I <strong>architected a streamlined user flow</strong> that moved away from a massive inventory dump. Instead, we designed the site around <strong>themed collections</strong> (Textural Ceramics, Handcrafted Accessories) that told a story and mirrored the wabi-sabi principles.</p>
-            
-            <p>This halved the number of clicks to find a resonant item by guiding users through a validated, intuitive discovery journey, much like walking through a well-curated gallery rather than a crowded warehouse.</p>
-            
-            <!-- IMAGE PLACEHOLDER: User flow diagram -->
-            <div class="project-image">
-                <div style="background: #f5f5f5; height: 400px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                    <p style="color: #666;">[Image: User flow diagram showing streamlined path from homepage to product discovery]</p>
-                </div>
-            </div>
-            
-            <h3>Building Trust Through Content</h3>
-            <p>Each product page was treated as a destination. We integrated the <strong>founder's story</strong> and details on <strong>traditional craftsmanship</strong> directly into the layout, using UX writing to highlight the 'thoughtful materials' and 'emotional resonance' of each piece. This transformed the product description from a spec sheet into a trust-building narrative.</p>
-            
-            <!-- IMAGE PLACEHOLDER: Product page before/after -->
-            <div class="project-images-two-horizontal">
-                <div class="project-image">
-                    <div style="background: #f5f5f5; height: 300px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                        <p style="color: #666;">[Image: Traditional product page]</p>
-                    </div>
-                </div>
-                <div class="project-image">
-                    <div style="background: #f5f5f5; height: 300px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                        <p style="color: #666;">[Image: LAN Studio's story-driven product page]</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Validation & Iteration -->
-        <div class="content-section">
-            <h2>Validation & Iteration: Weaving in Customer Feedback</h2>
-            
-            <h3>Usability Testing & Feedback Loops</h3>
-            <p>Our <strong>customer service philosophy—thoughtful, attentive, and human-centered</strong>—became a core part of our research arm. We treated every client interaction as qualitative data, creating a continuous feedback loop for improvement.</p>
-            
-            <h3>Key Iterations Based on User Feedback</h3>
-            
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Clarifying Scale & Texture</h3>
-                        <p>Initial feedback indicated that users loved the product stories but were unsure about scale and texture. We iterated on the product pages by refining the microcopy to be more descriptive and adding photos with common objects for scale. This direct user feedback boosted conversion rates and reduced pre-purchase queries.</p>
-                    </div>
-                </div>
+        <div class="comparison-grid">
+            <!-- Problem Side -->
+            <div class="problem-side">
+                <h2 class="section-title">Current Market Problems</h2>
                 
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Mobile Engagement Boost</h3>
-                        <p>We noticed mobile users were less engaged. A quick usability test revealed the 'Add to Cart' button was often lost. We implemented a sticky CTA on mobile, which significantly boosted mobile engagement and made the path to purchase frictionless.</p>
+                <div class="competitor-category">
+                    <h3 class="category-title">🏷️ Mass-Market Clutter</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">World Market</div>
+                            <ul class="competitor-problems">
+                                <li>Discount-focused, crowded layouts</li>
+                                <li>Eclectic but lacks curation</li>
+                                <li>Inconsistent quality perception</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">Urban Outfitters</div>
+                            <ul class="competitor-problems">
+                                <li>Overstimulating, chaotic design</li>
+                                <li>Trend-focused over timeless</li>
+                                <li>Poor mobile experience</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">West Elm</div>
+                            <ul class="competitor-problems">
+                                <li>Corporate, impersonal feel</li>
+                                <li>Mass-produced "handcrafted" claims</li>
+                                <li>Overwhelming product catalogs</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Streamlined Collection Navigation</h3>
-                        <p>Users expressed feeling overwhelmed by too many options. We refined our collection architecture to focus on curated themes rather than comprehensive categories, creating a more guided and serene discovery experience.</p>
+                <div class="competitor-category">
+                    <h3 class="category-title">💎 Luxury Barriers</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">The Citizenry</div>
+                            <ul class="competitor-problems">
+                                <li>Prohibitively expensive pricing</li>
+                                <li>Exclusive rather than inclusive</li>
+                                <li>Intimidating for average shoppers</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">ABC Carpet & Home</div>
+                            <ul class="competitor-problems">
+                                <li>Ultra-premium price points</li>
+                                <li>Art gallery-like unapproachability</li>
+                                <li>Narrow target audience</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- IMAGE PLACEHOLDER: Usability testing insights -->
-            <div class="project-image">
-                <div style="background: #f5f5f5; height: 400px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                    <p style="color: #666;">[Image: Affinity diagram or usability testing insights]</p>
-                </div>
-            </div>
-        </div>
 
-        <!-- Final Design -->
-        <div class="content-section">
-            <h2>The Final Experience</h2>
-            
-            <p>After multiple iterations informed by user feedback and usability testing, we arrived at a final design that perfectly balanced the wabi-sabi aesthetic with e-commerce functionality.</p>
-            
-            <!-- IMAGE PLACEHOLDER: Final desktop design -->
-            <div class="project-image">
-                <div style="background: #f5f5f5; height: 500px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                    <p style="color: #666;">[Image: Final LAN Studio desktop homepage]</p>
+                <div class="competitor-category">
+                    <h3 class="category-title">🔄 Fragmented Experiences</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">Etsy</div>
+                            <ul class="competitor-problems">
+                                <li>Inconsistent quality and branding</li>
+                                <li>Trust issues with unknown sellers</li>
+                                <li>No cohesive shopping experience</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">Jungalow</div>
+                            <ul class="competitor-problems">
+                                <li>Overwhelming maximalist aesthetic</li>
+                                <li>Niche appeal limits audience</li>
+                                <li>Style over substance</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">CB2 & EQ3</div>
+                            <ul class="competitor-problems">
+                                <li>Cold, sterile modern aesthetic</li>
+                                <li>Lacks warmth and soul</li>
+                                <li>Prioritizes form over feeling</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- IMAGE PLACEHOLDER: Mobile screens -->
-            <div class="vertical-mockups-grid">
-                <div class="project-image-vertical">
-                    <div style="background: #f5f5f5; height: 600px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                        <p style="color: #666;">[Image: Mobile collection view]</p>
-                    </div>
-                </div>
-                <div class="project-image-vertical">
-                    <div style="background: #f5f5f5; height: 600px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                        <p style="color: #666;">[Image: Mobile product page]</p>
-                    </div>
-                </div>
-                <div class="project-image-vertical">
-                    <div style="background: #f5f5f5; height: 600px; display: flex; align-items: center; justify-content: center; border: 1px dashed #ccc;">
-                        <p style="color: #666;">[Image: Mobile checkout process]</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <!-- Results & Reflection -->
-        <div class="content-section">
-            <h2>Results & Reflection: Measuring What Matters</h2>
-            
-            <h3>Quantitative Results</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0;">
-                <div class="metric-card">
-                    <span class="metric-number">13%</span>
-                    <p>Increase in mobile engagement after implementing sticky CTA</p>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-number">50%</span>
-                    <p>Reduction in clicks to discovery through curated collections</p>
-                </div>
-                <div class="metric-card">
-                    <span class="metric-number">4.8/5</span>
-                    <p>Customer satisfaction with shopping experience</p>
-                </div>
-            </div>
-            
-            <h3>Qualitative Results</h3>
-            <ul>
-                <li>Fostered a community where customers shared their stories, fulfilling the brand's mission to become a space for 'exchanging inspiration'</li>
-                <li>Customer service emails shifted from troubleshooting to expressions of appreciation for the 'personalized experience' and 'careful packaging,' validating our human-centered design ethos</li>
-                <li>Established LAN Studio as a trusted destination for mindful home decor curation</li>
-            </ul>
-            
-            <h3>Key Learnings</h3>
-            <div class="process-timeline">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Brand is UX</h3>
-                        <p>The wabi-sabi philosophy wasn't just a marketing tagline; it was a design principle that directly informed the information architecture, visual design, and microcopy. Every design decision had to reflect serenity, authenticity, and intention.</p>
-                    </div>
-                </div>
+            <!-- Solution Side -->
+            <div class="solution-side">
+                <h2 class="section-title">LAN Studio Solution</h2>
                 
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Your Customer Service is a Usability Lab</h3>
-                        <p>The most candid feedback comes post-purchase. By being 'responsive and transparent,' we uncovered invaluable insights that drove iterative improvements and built lasting customer relationships.</p>
+                <div class="competitor-category">
+                    <h3 class="category-title">🎯 Strategic Positioning</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">Bridging the Gap</div>
+                            <ul class="solution-features">
+                                <li>Mid-market pricing with premium quality</li>
+                                <li>Accessible luxury positioning</li>
+                                <li>Inclusive brand ethos</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Vision Guides, User Directs</h3>
-                        <p>As a founder, your vision is your guide, but the user is your compass. Validating the emotional needs of the user was what transformed a store into a destination and transactions into relationships.</p>
+                <div class="competitor-category">
+                    <h3 class="category-title">✨ Experience Design</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">Curated Discovery</div>
+                            <ul class="solution-features">
+                                <li>Themed collections over massive catalogs</li>
+                                <li>Intentional, serene browsing experience</li>
+                                <li>Story-driven product presentation</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">Wabi-Sabi Philosophy</div>
+                            <ul class="solution-features">
+                                <li>Celebrates imperfection and authenticity</li>
+                                <li>Creates emotional connection</li>
+                                <li>Builds trust through transparency</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="competitor-category">
+                    <h3 class="category-title">🛍️ User-Centric Commerce</h3>
+                    <div class="competitor-list">
+                        <div class="competitor-item">
+                            <div class="competitor-name">Streamlined Experience</div>
+                            <ul class="solution-features">
+                                <li>Halved clicks to product discovery</li>
+                                <li>Mobile-optimized with sticky CTAs</li>
+                                <li>Reduced decision fatigue</li>
+                            </ul>
+                        </div>
+                        <div class="competitor-item">
+                            <div class="competitor-name">Community Building</div>
+                            <ul class="solution-features">
+                                <li>Customer stories and inspiration sharing</li>
+                                <li>Personalized, human-centered service</li>
+                                <li>Builds lasting relationships</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <div style="background: var(--background-light); padding: 2rem; border: 0.5px solid var(--border); margin: 2rem 0;">
-                <p style="font-style: italic; margin: 0;">
-                    LAN Studio taught me that entrepreneurship and UX design are deeply intertwined. Building a brand from scratch forced me to consider every touchpoint through a user-centered lens, from the first website visit to the unboxing experience. This holistic approach to UX—where business strategy and user needs align—is a perspective I'll carry forward to all future projects.
-                </p>
+        </div>
+
+        <!-- LAN Studio Value Proposition -->
+        <div class="lan-studio-highlight">
+            <h2 class="section-title">LAN Studio's Unique Value Proposition</h2>
+            <div class="value-props">
+                <div class="value-prop">
+                    <div class="value-prop-icon">🎨</div>
+                    <div class="value-prop-title">Artisanal Quality</div>
+                    <p>Handcrafted pieces with authentic stories at accessible prices</p>
+                </div>
+                <div class="value-prop">
+                    <div class="value-prop-icon">🧘‍♀️</div>
+                    <div class="value-prop-title">Serene Experience</div>
+                    <p>Calm, intentional shopping journey free from decision fatigue</p>
+                </div>
+                <div class="value-prop">
+                    <div class="value-prop-icon">🤝</div>
+                    <div class="value-prop-title">Authentic Connection</div>
+                    <p>Building community through shared appreciation for mindful living</p>
+                </div>
+                <div class="value-prop">
+                    <div class="value-prop-icon">✨</div>
+                    <div class="value-prop-title">Wabi-Sabi Soul</div>
+                    <p>Celebrating beauty in imperfection and natural authenticity</p>
+                </div>
             </div>
         </div>
-    </section>
 
-    <!-- Work Files Section -->
-    <section class="content-section">
-        <h2>Work Files</h2>
-        
-        <p>1. <a href="#" target="_blank" rel="noopener noreferrer">Live Website</a></p> 
-              
-        <p>2. <a href="#" target="_blank" rel="noopener noreferrer">Brand Foundation Document</a></p>
-        
-        <p>3. <a href="#" target="_blank" rel="noopener noreferrer">Competitive Audit Analysis</a></p>
-        
-        <p>4. <a href="#" target="_blank" rel="noopener noreferrer">User Research Synthesis</a></p>
-
-        <p>5. <a href="#" target="_blank" rel="noopener noreferrer">UX Writing & Microcopy Guide</a></p>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <h3>Interested in mindful e-commerce experiences?</h3>
-            <p>Let's discuss how intentional design can transform digital shopping</p>
-            <div class="contact-links">
-                <a href="mailto:katherineliang72@163.com">katherineliang72@163.com</a>
-                <a href="https://www.linkedin.com/in/katherineliang72/" target="_blank">LinkedIn</a>
+        <!-- Visual Summary -->
+        <div class="visual-summary">
+            <h3 class="summary-title">Market Transformation Summary</h3>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <strong>Before:</strong> Consumers forced to choose between mass-produced clutter and unattainable luxury
+                </div>
+                <div class="summary-item">
+                    <strong>After:</strong> LAN Studio creates a middle path - accessible artistry with soulful experience
+                </div>
+                <div class="summary-item">
+                    <strong>Impact:</strong> 13% mobile engagement increase, 50% faster discovery, 4.8/5 customer satisfaction
+                </div>
             </div>
         </div>
-    </footer>
-
-    <script src="script.js"></script>
+    </div>
 </body>
 </html>
